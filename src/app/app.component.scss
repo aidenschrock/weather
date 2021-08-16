@@ -1,0 +1,47 @@
+@import "../styles.scss";
+h1,
+h2,
+h3 {
+  font-family: "Montserrat", sans-serif;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+h2 {
+  color: #e91e63;
+  margin-top: 0;
+}
+
+.head {
+  background-color: #303030;
+  padding: 2%;
+  font-family: "Montserrat", sans-serif;
+}
+
+.get-weather {
+  width: 20em;
+  font-size: 1.2em;
+  margin-top: 1%;
+  font-family: "Montserrat", sans-serif;
+}
+
+input {
+  width: 30em;
+  height: 1.8em;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  text-align: center;
+  font-size: 1.6em;
+  font-family: "Montserrat", sans-serif;
+}
+
+.weather-card {
+  margin: 5% 2% 2% 2%;
+  text-align: center;
+}
+.weather-icon {
+  width: 30%;
+}
