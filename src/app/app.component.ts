@@ -1,4 +1,3 @@
-import { UrlResolver } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { map } from 'rxjs/operators';
@@ -30,7 +29,6 @@ export class AppComponent {
 
   areCardsShown() {
     if (this.forecastReadingsByDay != "") {
-      console.log(this.forecastReadingsByDay)
       return true
     } else {
       return false
@@ -38,7 +36,6 @@ export class AppComponent {
   }
 
   getWeather() {
-    console.log(this.userInput)
     this.clearWeather()
     if (this.userInput) {
       const forecastURL = new URL('https://api.openweathermap.org/data/2.5/forecast')
@@ -62,14 +59,11 @@ export class AppComponent {
         this.cityName = data.city.name;
         const forecastsByDay = this.chunkReadingsIntoDays(data.list);
         forecastsByDay.forEach(day => {
-          this.forecastReadingsByDay.push(day)
-          this.dataTrackerForcasts.push(new DataTracker(day))
+          this.forecastReadingsByDay.push(day);
+          this.dataTrackerForcasts.push(new DataTracker(day));
         })
-        console.log(this.dataTrackerForcasts)
       });
-
     }
-
   }
 
   clearWeather() {
@@ -79,7 +73,7 @@ export class AppComponent {
   }
 
   private chunkReadingsIntoDays(forecasts: IForecastThreeHourPeriod[]) {
-    const forecastReadingsByDay = [] as ISingleDayForecast[]
+    const forecastReadingsByDay: ISingleDayForecast[] = []
 
     const forecastsPerDay = 8
     for (let i = 0; i < forecasts.length; i += forecastsPerDay) {
@@ -89,7 +83,6 @@ export class AppComponent {
       })
     }
 
-    console.log(forecastReadingsByDay)
     return forecastReadingsByDay
   }
 }
