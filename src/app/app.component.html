@@ -16,176 +16,36 @@
   </div>
   <div class="wrapper" fxLayout="column" fxLayoutAlign="center center">
     <h1 class="city-name">{{ cityName }}</h1>
-    <div fxLayout="row" fxLayout.lt-md="column">
+    <div *ngIf="areCardsShown()" fxLayout="row" fxLayout.lt-md="column">
       <mat-card
+        *ngFor="let forecast of forecastReadingsByDay; let i = index"
         class="weather-card"
         fxLayout="column"
         fxLayoutAlign="center center"
-        *ngIf="areCardsShown()"
       >
-        <h2>{{ forecastReadingsByDay[0]?.dayOfWeek }}</h2>
+        <h2>{{ forecast.dayOfWeek }}</h2>
         <div fxLayout="row" fxLayoutAlign="center center">
           <img
             class="weather-icon"
             [src]="
               'http://openweathermap.org/img/wn/' +
-              forecastReadingsByDay[0].forecasts[0].weather[0].icon +
+              forecast.forecasts[0].weather[0].icon +
               '@2x.png'
             "
           />
-          {{ forecastReadingsByDay[0].forecasts[0].weather[0].description }}
+          {{ forecast.forecasts[0].weather[0].description }}
         </div>
 
-        <h1>
-          {{ forecastReadingsByDay[0].forecasts[0].main.temp.toFixed(0) }}&deg;F
-        </h1>
+        <h1>{{ forecast.forecasts[0].main.temp.toFixed(0) }}&deg;F</h1>
         <p>
-          {{
-            forecastReadingsByDay[0].forecasts[0].main.temp_max.toFixed(0)
-          }}&deg;F/{{
-            forecastReadingsByDay[0].forecasts[0].main.temp_min.toFixed(0)
+          {{ forecast.forecasts[0].main.temp_max.toFixed(0) }}&deg;F/{{
+            forecast.forecasts[0].main.temp_min.toFixed(0)
           }}&deg;F
         </p>
-        <p>Min: {{ dataTrackerForcasts[0].showMin().toFixed(0) }}&deg;F</p>
-        <p>Max: {{ dataTrackerForcasts[0].showMax().toFixed(0) }}&deg;F</p>
-        <p>Mean: {{ dataTrackerForcasts[0].showMean().toFixed(0) }}&deg;F</p>
-        <p>Mode: {{ dataTrackerForcasts[0].showMode() }}</p>
-      </mat-card>
-      <mat-card
-        class="weather-card"
-        fxLayout="column"
-        fxLayoutAlign="center center"
-        *ngIf="areCardsShown()"
-      >
-        <h2>{{ forecastReadingsByDay[1]?.dayOfWeek }}</h2>
-        <div fxLayout="row" fxLayoutAlign="center center">
-          <img
-            class="weather-icon"
-            [src]="
-              'http://openweathermap.org/img/wn/' +
-              forecastReadingsByDay[1].forecasts[0].weather[0].icon +
-              '@2x.png'
-            "
-          />
-          {{ forecastReadingsByDay[1].forecasts[0].weather[0].description }}
-        </div>
-
-        <h1>
-          {{ forecastReadingsByDay[1].forecasts[0].main.temp.toFixed(0) }}&deg;F
-        </h1>
-        <p>
-          {{
-            forecastReadingsByDay[1].forecasts[0].main.temp_max.toFixed(0)
-          }}&deg;F/{{
-            forecastReadingsByDay[1].forecasts[0].main.temp_min.toFixed(0)
-          }}&deg;F
-        </p>
-        <p>Min: {{ dataTrackerForcasts[1].showMin().toFixed(0) }}&deg;F</p>
-        <p>Max: {{ dataTrackerForcasts[1].showMax().toFixed(0) }}&deg;F</p>
-        <p>Mean: {{ dataTrackerForcasts[1].showMean().toFixed(0) }}&deg;F</p>
-        <p>Mode: {{ dataTrackerForcasts[1].showMode() }}</p>
-      </mat-card>
-      <mat-card
-        class="weather-card"
-        fxLayout="column"
-        fxLayoutAlign="center center"
-        *ngIf="areCardsShown()"
-      >
-        <h2>{{ forecastReadingsByDay[2]?.dayOfWeek }}</h2>
-        <div fxLayout="row" fxLayoutAlign="center center">
-          <img
-            class="weather-icon"
-            [src]="
-              'http://openweathermap.org/img/wn/' +
-              forecastReadingsByDay[2].forecasts[0].weather[0].icon +
-              '@2x.png'
-            "
-          />
-          {{ forecastReadingsByDay[2].forecasts[0].weather[0].description }}
-        </div>
-
-        <h1>
-          {{ forecastReadingsByDay[2].forecasts[0].main.temp.toFixed(0) }}&deg;F
-        </h1>
-        <p>
-          {{
-            forecastReadingsByDay[2].forecasts[0].main.temp_max.toFixed(0)
-          }}&deg;F/{{
-            forecastReadingsByDay[2].forecasts[0].main.temp_min.toFixed(0)
-          }}&deg;F
-        </p>
-        <p>Min: {{ dataTrackerForcasts[2].showMin().toFixed(0) }}&deg;F</p>
-        <p>Max: {{ dataTrackerForcasts[2].showMax().toFixed(0) }}&deg;F</p>
-        <p>Mean: {{ dataTrackerForcasts[2].showMean().toFixed(0) }}&deg;F</p>
-        <p>Mode: {{ dataTrackerForcasts[2].showMode() }}</p>
-      </mat-card>
-      <mat-card
-        class="weather-card"
-        fxLayout="column"
-        fxLayoutAlign="center center"
-        *ngIf="areCardsShown()"
-      >
-        <h2>{{ forecastReadingsByDay[3]?.dayOfWeek }}</h2>
-        <div fxLayout="row" fxLayoutAlign="center center">
-          <img
-            class="weather-icon"
-            [src]="
-              'http://openweathermap.org/img/wn/' +
-              forecastReadingsByDay[3].forecasts[0].weather[0].icon +
-              '@2x.png'
-            "
-          />
-          {{ forecastReadingsByDay[3].forecasts[0].weather[0].description }}
-        </div>
-
-        <h1>
-          {{ forecastReadingsByDay[3].forecasts[0].main.temp.toFixed(0) }}&deg;F
-        </h1>
-        <p>
-          {{
-            forecastReadingsByDay[3].forecasts[0].main.temp_max.toFixed(0)
-          }}&deg;F/{{
-            forecastReadingsByDay[3].forecasts[0].main.temp_min.toFixed(0)
-          }}&deg;F
-        </p>
-        <p>Min: {{ dataTrackerForcasts[3].showMin().toFixed(0) }}&deg;F</p>
-        <p>Max: {{ dataTrackerForcasts[3].showMax().toFixed(0) }}&deg;F</p>
-        <p>Mean: {{ dataTrackerForcasts[3].showMean().toFixed(0) }}&deg;F</p>
-        <p>Mode: {{ dataTrackerForcasts[3].showMode() }}</p>
-      </mat-card>
-      <mat-card
-        class="weather-card"
-        fxLayout="column"
-        fxLayoutAlign="center center"
-        *ngIf="areCardsShown()"
-      >
-        <h2>{{ forecastReadingsByDay[4]?.dayOfWeek }}</h2>
-        <div fxLayout="row" fxLayoutAlign="center center">
-          <img
-            class="weather-icon"
-            [src]="
-              'http://openweathermap.org/img/wn/' +
-              forecastReadingsByDay[4].forecasts[0].weather[0].icon +
-              '@2x.png'
-            "
-          />
-          {{ forecastReadingsByDay[4].forecasts[0].weather[0].description }}
-        </div>
-
-        <h1>
-          {{ forecastReadingsByDay[4].forecasts[0].main.temp.toFixed(0) }}&deg;F
-        </h1>
-        <p>
-          {{
-            forecastReadingsByDay[4].forecasts[0].main.temp_max.toFixed(0)
-          }}&deg;F/{{
-            forecastReadingsByDay[4].forecasts[0].main.temp_min.toFixed(0)
-          }}&deg;F
-        </p>
-        <p>Min: {{ dataTrackerForcasts[4].showMin().toFixed(0) }}&deg;F</p>
-        <p>Max: {{ dataTrackerForcasts[4].showMax().toFixed(0) }}&deg;F</p>
-        <p>Mean: {{ dataTrackerForcasts[4].showMean().toFixed(0) }}&deg;F</p>
-        <p>Mode: {{ dataTrackerForcasts[4].showMode() }}</p>
+        <p>Min: {{ dataTrackerForcasts[i].showMin().toFixed(0) }}&deg;F</p>
+        <p>Max: {{ dataTrackerForcasts[i].showMax().toFixed(0) }}&deg;F</p>
+        <p>Mean: {{ dataTrackerForcasts[i].showMean().toFixed(0) }}&deg;F</p>
+        <p>Mode: {{ dataTrackerForcasts[i].showMode() }}</p>
       </mat-card>
     </div>
   </div>
