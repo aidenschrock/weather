@@ -19,6 +19,7 @@ export class AppComponent {
   apiKey: string;
   forecastReadingsByDay: any;
   dataTrackerForcasts: any;
+  cityName: string;
 
 
   constructor(private httpClient: HttpClient) {
@@ -58,6 +59,7 @@ export class AppComponent {
       )
 
       forecastApiResponse.subscribe((data: IOpenWeatherResponse) => {
+        this.cityName = data.city.name;
         const forecastsByDay = this.chunkReadingsIntoDays(data.list);
         forecastsByDay.forEach(day => {
           this.forecastReadingsByDay.push(day)
@@ -71,6 +73,7 @@ export class AppComponent {
   }
 
   clearWeather() {
+    this.cityName = "";
     this.forecastReadingsByDay = [];
     this.dataTrackerForcasts = [];
   }
